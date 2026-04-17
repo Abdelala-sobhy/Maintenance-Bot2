@@ -1,8 +1,12 @@
 import streamlit as st
 import google.generativeai as genai
 
-# إعداد مفتاح الـ API
-genai.configure(api_key="AQ.Ab8RN6K4CUJjzJjDO-K1UwmTaVcgYRAr0pHsUZEc05vlKO3Xyw")
+# السطر ده هو اللي بيمسح العطل اللي بيظهر لك
+if "API_KEY" in st.secrets:
+    api_key = st.secrets["AQ.Ab8RN6JwoxVDb1PPT0kbuL0iuKodH1nzAiAA6Bb7cpRh0c_7LQ"]
+    genai.configure(api_key=api_key)
+else:
+    st.error("المفتاح غير مضبوط في إعدادات Secrets")
 
 # تعليمات النظام (قاعدة المعرفة للأعطال)
 SYSTEM_PROMPT = """
