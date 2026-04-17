@@ -1,13 +1,13 @@
 import streamlit as st
 import google.generativeai as genai
 
-# السطر ده هو اللي بيمسح العطل اللي بيظهر لك
+# دي الطريقة الوحيدة الصحيحة عشان البوت يشتغل أونلاين
 if "API_KEY" in st.secrets:
-    api_key = st.secrets["AQ.Ab8RN6JwoxVDb1PPT0kbuL0iuKodH1nzAiAA6Bb7cpRh0c_7LQ"]
+    api_key = st.secrets["API_KEY"]
     genai.configure(api_key=api_key)
 else:
-    st.error("المفتاح غير مضبوط في إعدادات Secrets")
-
+    st.error("خطأ: مفتاح الـ API غير موجود في إعدادات Secrets")
+    st.stop() # بيوقف الكود هنا عشان ميعملش العطل الأحمر اللي بتشوفه
 # تعليمات النظام (قاعدة المعرفة للأعطال)
 SYSTEM_PROMPT = """
 أنت مساعد تعليمي متخصص في صيانة الحاسب والموبايل.
